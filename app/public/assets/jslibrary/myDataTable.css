@@ -1,0 +1,78 @@
+
+.ui.padded.table>thead>tr.col-filters>th {
+    padding-top:0;
+    padding-bottom:0;
+}
+.ui.padded.table>thead>tr.col-filters>th.col-filter {
+    padding-left: 0;
+    padding-right:0;
+}
+
+th.col-filter input.col-filter-control {
+    border: 1px solid #c5c5ce;
+    background: aliceblue;
+    border-radius: 4px;
+}
+
+th.col-filter input.col-filter-control:active,
+th.col-filter input.col-filter-control:focus {
+    outline-color: cornflowerblue;
+}
+
+table td.myDataTable-td-editmode,
+table.ui.table>tbody>tr>td.myDataTable-td-editmode,
+.ui.padded.table>tbody>tr>td.myDataTable-td-editmode {
+    padding-left:0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+table.ui.table .d-none {
+    display: none;
+}
+
+table td.myDataTable-td-editmode img,
+table.ui.table>tbody>tr>td.myDataTable-td-editmode img,
+.ui.padded.table>tbody>tr>td.myDataTable-td-editmode img {
+    max-height: 120px;
+    max-width: 120px;
+    height: auto;
+}
+
+.myDataTable-selected-for-delete,
+.myDataTable-selected-for-delete th,
+.myDataTable-selected-for-delete td {
+    background-color: rgba(255, 39, 45, 0.12);
+    border-color: rgb(255, 39, 45);
+}
+
+th {
+    position: relative;
+}
+
+th .sortPos {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    font-size:9px;
+    color: rgba(0, 0, 0, .3);
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 50%;
+    font-size:10px;
+    line-height:10px;
+    min-width:15px;
+    min-height:15px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0
+}
+th .sortPos:not(.icon)::after {
+    content: attr(sortposnr);
+}
+th .sortPos:hover {
+    color:red;
+    background-color: rgba(255, 255, 255, .5);
+    border: 1px solid rgba(0, 0, 0, .5);
+}

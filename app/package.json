@@ -1,0 +1,9 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "public/assets/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "fomantic-ui": "^2.8.8-beta.16"
+  }
+}

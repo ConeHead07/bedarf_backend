@@ -1,0 +1,120 @@
+{
+  "configVersion": 1,
+  "timestamp": 1610556854252,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main-es2015.7587af04d59a13b8a0eb.js",
+        "/main-es5.7587af04d59a13b8a0eb.js",
+        "/manifest.webmanifest",
+        "/polyfills-es2015.e04c183f50820e591f59.js",
+        "/polyfills-es5.4f39b8044fe60aac5d2e.js",
+        "/runtime-es2015.528eac4c059023231e5e.js",
+        "/runtime-es5.528eac4c059023231e5e.js",
+        "/styles.11dee07d8044e662b137.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/googlesounds/alert_error-01.caf",
+        "/assets/googlesounds/alert_error-01.mp3",
+        "/assets/googlesounds/alert_error-01.ogg",
+        "/assets/googlesounds/alert_error-01.wav",
+        "/assets/googlesounds/notification_simple-01.caf",
+        "/assets/googlesounds/notification_simple-01.mp3",
+        "/assets/googlesounds/notification_simple-01.ogg",
+        "/assets/googlesounds/notification_simple-01.wav",
+        "/assets/icon/barcode-to-pc-server.v3.7.0.win.setup.exe",
+        "/assets/icon/icon-128x128.png",
+        "/assets/icon/icon-144x144.png",
+        "/assets/icon/icon-152x152.png",
+        "/assets/icon/icon-16x16.png",
+        "/assets/icon/icon-192x192.png",
+        "/assets/icon/icon-32x32.png",
+        "/assets/icon/icon-384x384.png",
+        "/assets/icon/icon-512x512.png",
+        "/assets/icon/icon-72x72.png",
+        "/assets/icon/icon-96x96.png",
+        "/assets/icon/yarn-1.22.4.msi",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/googlesounds/alert_error-01.caf": "c260d5bc76f32c9787621ae589e5c9d3005872c2",
+    "/assets/googlesounds/alert_error-01.mp3": "cabd12e59e6a08cafa81012be78c44499ae91816",
+    "/assets/googlesounds/alert_error-01.ogg": "1b6cf02783b1f2817e43196069338cdac4cd15e9",
+    "/assets/googlesounds/alert_error-01.wav": "cad8a7c94cf83d70dec06d0cfa4e3d5b67b8eeaf",
+    "/assets/googlesounds/notification_simple-01.caf": "30c6a8ab979979f57d1b67a74fd3cab54927790f",
+    "/assets/googlesounds/notification_simple-01.mp3": "b2c1574563b48808d492371fbe8d49dbd6d54497",
+    "/assets/googlesounds/notification_simple-01.ogg": "27ef34e724300b7b9c2a48ee41a84f926766ae7e",
+    "/assets/googlesounds/notification_simple-01.wav": "09b82dff0aa708c13a2a8b7c81e025573d0c91d3",
+    "/assets/icon/barcode-to-pc-server.v3.7.0.win.setup.exe": "3027aeafda201d7582a15715c54fea638aa19e7c",
+    "/assets/icon/icon-128x128.png": "842bdceef25f5740f200de22180141847b2f0b80",
+    "/assets/icon/icon-144x144.png": "58b1834a019ac1717860017605a8aea507d357b5",
+    "/assets/icon/icon-152x152.png": "40fbef2fb5ccb2b372fc999b8b85ce140d0941cd",
+    "/assets/icon/icon-16x16.png": "f29dd83494bacad509ab9209d0fe3bac590372f3",
+    "/assets/icon/icon-192x192.png": "87928464dba1d7c788c9f6de956f99947470a359",
+    "/assets/icon/icon-32x32.png": "f2e0a73c6d735cc1e3c2cb1ffa964b684326cdbf",
+    "/assets/icon/icon-384x384.png": "58fd074eca66c6223ad217c1c0c7d06880a08e53",
+    "/assets/icon/icon-512x512.png": "751e451c3df49031d4e76c4560eff56f1716a002",
+    "/assets/icon/icon-72x72.png": "58d6745b5ff885601c61c11e1775fc7b5f045e7f",
+    "/assets/icon/icon-96x96.png": "6ca29999af98f0cf163cde2ee82af440f8c7bac6",
+    "/assets/icon/yarn-1.22.4.msi": "2474d778e06f9d81ac9c3db0aebd5cce843161eb",
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "3276cc571b2d86a190c8bec6984f1c41feae80cb",
+    "/main-es2015.7587af04d59a13b8a0eb.js": "404a9cf477a5d32dee0cedd88d23a2933112e836",
+    "/main-es5.7587af04d59a13b8a0eb.js": "c105b0ef9f4c0f9393fa14a5c2ee74576d617a29",
+    "/manifest.webmanifest": "63b272452f7323ec09705c84044faa394ce82a79",
+    "/polyfills-es2015.e04c183f50820e591f59.js": "9abfe15f17820a646e3d51c420908d9f8f7b69b8",
+    "/polyfills-es5.4f39b8044fe60aac5d2e.js": "ff1a30ceb76e72a7911e893de6b7981cd5354180",
+    "/runtime-es2015.528eac4c059023231e5e.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/runtime-es5.528eac4c059023231e5e.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/styles.11dee07d8044e662b137.css": "b032b2bbc33fca6a81cfeeb4c57eb941069b2503"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}

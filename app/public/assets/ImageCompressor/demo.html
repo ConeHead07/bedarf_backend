@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#console {
+
+        }
+        div#console div.zebra::nth-child(event) {
+            background-color: #e2cfff;
+        }
+        div#console div.zebra::nth-child(odd) {
+            background-color: #b4e7f2;
+        }
+        .cell.col-filename {
+            display: inline-block;
+            width: 30%;
+            text-align: left;
+        }
+        .cell.col-filesize {
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+        }
+        .cell.col-image {
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+        }
+    </style>
+    <script src="compressor.js"></script>
+    <script>
+
+        var myWorkers = [];
+        var myResizeWorkers = [];
+
+        var workerResults = [];
+
+        var myFiles = [];
+
+        function logMessage(msg) {
+            var cns = document.getElementById('console');
+
+            var div = document.createElement("div");
+            div.className = 'zebra';
+            var txt = document.createTextNode(msg);
+            div.appendChild(txt);
+
+            cns.appendChild(cns);
+        }
+
+        function onMessage (e) {
+            console.log('[MAIN-THREAD] onMessage', { e });
+
+            if (typeof e.data === 'object' && 'resultType' in e.data) {
+                workerResults.push(e.data);
+                var refCommand = e.data.refCommand;
+                var refCommandId = e.data.refCommandId;
+                var resultData = e.data.data;
+
+
+/*
+                        myWorkers[0].postMessage({
+                            command: 'readFile',
+                            commandId: files[0].name,
+                            data: files[0]
+                        });
+
+                        myWorkers[0].postMessage({
+                            command: 'loadImageFileData',
+                            commandId: 'TY3FB286C86C5439.jpg',
+                            data: document.getElementById('uploadImages').files[0]
+                        });
+
+                        myWorkers[0].postMessage({
+                            command: 'resizeByImageFileData',
+                            commandId: 'TY3FB286C86C5439.jpg',
+                            data: workerResults[1]
+                        });
+                */
+
+                switch(e.data.resultType) {
+                    case 'fileread':
+                        console.log('[MAIN-THREAD] Get loaded file data for ' + e.data.filename, e.data.data.length);
+
+                        if (0) myWorkers[0].postMessage({
+                            command: 'loadImageFileData',
+                            commandId: 'TY3FB286C86C5439.jpg',
+                            filename: e.data.filename,
+                            data: document.getElementById('uploadImages').files[0]
+                        });
+                        break;
+
+                    case 'imageloaded':
+                        console.log('[MAIN-THREAD] Image is already loaded ', + e.data);
+
+
+                        if (0) myWorkers[0].postMessage({
+                            command: 'resizeByImageFileData',
+                            commandId: 'TY3FB286C86C5439.jpg',
+                            filename: e.data.filename,
+                            data: resultData
+                        });
+                        break;
+
+
+                    case 'imageresized':
+                        console.log('[MAIN-THREAD] Get resized Image-File ', e.data);
+                        var filename = resultData.file.name;
+                        console.log('filename ' + filename);
+
+
+                        var rows = document.querySelectorAll('div.row.file');
+                        console.log('Found File-Rows ', { rows })
+                        var foundRow = null;
+                        for(var row of rows) {
+                            if (row.dataset.filename === filename) {
+                                foundRow = row;
+                                break;
+                            }
+                        }
+
+                        if (foundRow) {
+                            console.log('Found File-Row with same filename ', { foundRow });
+
+                            var elm = document.createElement('img');
+                            elm.style.maxWidth = "120px";
+                            elm.style.maxHeight = "120px";
+
+                            elm.onload = function() {
+                                console.log('Image loaded ', filename);
+                                foundRow.querySelector('span.col-image').appendChild(elm);
+                            };
+                            elm.onerror = function() {
+                                console.log('CanNot Load Image ', filename);
+                            };
+
+                            console.log('Load File To Image');
+                            fileAsImgSrc(resultData.file, elm);
+                        } else {
+                            console.log('NOT Found :: File-Row with same filename!', filename);
+                        }
+                        break;
+
+                    default:
+                        console.log('[MAIN-THREAD] Unerwartete Antwort: ', { e });
+                }
+            } else {
+                console.log('[MAIN-THREAD] WARNING: Nicht konfigurierte Antwort: ', e.data);
+            }
+
+        }
+
+        function onError (e) {
+            console.error('[MAIN-THREAD] Fehler: ' + e.filename + ", Zeile " + e.lineno, e.message);
+        }
+
+        function startWW () {
+        }
+
+        function checkAndResizeImageInputFile(inputFile, idx) {
+            var newResizeWorker = new Worker ("worker.js");
+            myResizeWorkers.push(newResizeWorker);
+            // var workerName = inputFile.name;
+            newResizeWorker.addEventListener ("message", onMessage, true);
+            newResizeWorker.addEventListener ("error", onError, true);
+
+            newResizeWorker.postMessage({
+                command: 'resizeImageFile', // 'readFile',
+                commandId: inputFile.name,
+                conf: {
+                    maxWidth: 500,
+                    maxHeight: 500,
+                    maxSize: 30 * 1024,
+                    quality: 0.9,
+                    minQuality: 0.5
+                },
+                data: inputFile
+            });
+        }
+
+        function fileSizeReadable(fsize, unit='auto', withUnit = true) {
+            if (!unit) unit = 'auto';
+            if ( (fsize < 1024 && unit === 'auto') || ['Bytes', 'B'].indexOf(unit) > -1) {
+                return fsize + (withUnit ? ' Bytes' : '');
+            } else if ((fsize < (1024 * 1024) && unit === 'auto') || unit === 'KB') {
+                return (fsize / 1024).toFixed(1).toString().replace('.', ',') + (withUnit ? ' KB' : '');
+            }
+            return (fsize / (1024 * 1024)).toFixed(1).replace('.', ',') + (withUnit ? ' MB' : '');
+        }
+
+        function onFileInputChange(e) {
+            console.log('onFileInputChange', e);
+            listInputFiles(e.target);
+        }
+
+
+        function listInputFiles(input) {
+            console.log('onFileInputChange', input);
+            var d = document;
+            var flist = document.getElementById('uploadingFiles');
+            myFiles = [];
+            if (input.files.length > 0) {
+                var files = input.files;
+                var idx = -1;
+                for (var f of files) {
+                    idx++;
+                    myFiles.push( f );
+                    var row = d.createElement('div');
+                    var c1 = d.createElement('span');
+                    var c2 = d.createElement('span');
+                    var c3 = d.createElement('span');
+
+                    row.dataset.filename = f.name;
+                    row.className = "row file file-" + idx;
+
+                    c1.className = 'cell col-filename';
+                    c1.innerText = f.name;
+
+                    c2.className = 'cell col-filesize';
+                    c2.innerText = fileSizeReadable(f.size);
+
+                    c3.className = 'cell col-image';
+
+                    row.appendChild(c1);
+                    row.appendChild(c2);
+                    row.appendChild(c3);
+
+                    flist.appendChild( row );
+
+                    checkAndResizeImageInputFile(f, idx);
+                }
+
+                if (0) myWorkers[0].postMessage({
+                    command: 'resizeImageFile', // 'readFile',
+                    commandId: files[0].name,
+
+                    conf: {
+                      maxWidth: 500,
+                      maxHeight: 500,
+                      maxSize: 30 * 1024,
+                      quality: 0.9,
+                      minQuality: 0.5
+                    },
+                    data: files[0]
+                });
+            } else {
+                flist.innerHTML = '';
+            }
+        }
+    </script>
+</head>
+<body>
+<form>
+    <input type="file" accept="image/jpeg" multiple name="newImages" id="uploadImages">
+    <div id="uploadingFiles"></div>
+</form>
+<div id="console"></div>
+
+</body>
+<script>
+    document.getElementById('uploadImages').addEventListener('change', onFileInputChange);
+    document.getElementById('uploadImages').click();
+</script>
+</html>

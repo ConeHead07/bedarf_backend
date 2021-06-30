@@ -1,0 +1,4 @@
+label.upload input[type=file],
+label.upload + input[type=file] {
+    display:none;
+}
