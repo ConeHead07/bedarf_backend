@@ -8,7 +8,14 @@
 
 namespace App;
 
-
+/**
+ * BaseModel
+ *
+ * @package App
+ * @mixin Eloquent
+ * @mixin Illuminate\Database\Eloquent\Model
+ * @mixin Illuminate\Database\Eloquent\Builder
+ */
 class BereichMABaseData extends BaseModel
 {
     protected $table = 'BereichsMitarbeiter';
@@ -18,6 +25,7 @@ class BereichMABaseData extends BaseModel
     protected $fillable = [
         'kid',
         'aid',
+        'Abteilung',
         'Fachbereich',
         'Senior_Director_VP',
         'Senior_Dep_Head',
@@ -29,6 +37,22 @@ class BereichMABaseData extends BaseModel
         'Externe',
         'DS_Ratio_Intern',
         'DS_Ratio_Temp',
+        'Einzelarbeit_Anteil',
+        'MobilArbeit_AT_Woche_Halb',
+        'MobilArbeit_AT_Woche_1',
+        'MobilArbeit_AT_Woche_2',
+        'MobilArbeit_AT_Woche_3',
+        'MobilArbeit_AT_Woche_4Plus',
+        'MobilArbeit_VP',
+        'MobilArbeit_Senior_Dep_Head',
+        'MobilArbeit_Senior_Teammanager',
+        'MobilArbeit_MA_Innendienst',
+        'MobilArbeit_MA_Aussendienst',
+        'MobilArbeit_Azubis',
+        'MobilArbeit_Werkstudenten_Praktikanten',
+        'MobilArbeit_Externe',
+        'Woche_Arbeitstage',
+
         'created_uid',
         'modified_uid',
     ];

@@ -120,15 +120,18 @@ $router->group([
 $router->group([
     'prefix' => 'api/interviewdata'
 ], function() use($router) {
-    $router->get('all/{id:\d}', 'InterviewBaseDataController@all');
+    $router->get('all/{id:\d+}', 'InterviewBaseDataController@all');
     $router->get('{id:\d+}', 'InterviewBaseDataController@get');
     $router->post('{id:\d+}', 'InterviewBaseDataController@update');
+    $router->post('insert', 'InterviewBaseDataController@insert');
+    $router->get('delete/{id:\d+}', 'InterviewBaseDataController@delete');
+    $router->delete('{id:\d+}', 'InterviewBaseDataController@delete');
 });
 
 $router->group([
     'prefix' => 'api/interviewOverview'
 ], function() use($router) {
-    $router->get('all/{id:\d}', 'InterviewOverviewController@allByKid');
+    $router->get('all/{id:\d+}', 'InterviewOverviewController@allByKid');
     $router->get('{id:\d+}', 'InterviewOverviewController@get');
     $router->post('{id:\d+}', 'InterviewOverviewController@update');
 });
@@ -136,7 +139,7 @@ $router->group([
 $router->group([
     'prefix' => 'api/taetigkeiten'
 ], function() use($router) {
-    $router->get('all/{id:\d}', 'TaetigkeitenController@all');
+    $router->get('all/{id:\d+}', 'TaetigkeitenController@all');
     $router->get('{id:\d+}', 'TaetigkeitenController@get');
     $router->post('{id:\d+}', 'TaetigkeitenController@update');
 });
@@ -144,7 +147,7 @@ $router->group([
 $router->group([
     'prefix' => 'api/mobilesArbeiten'
 ], function() use($router) {
-    $router->get('all/{id:\d}', 'MobilesArbeitenController@all');
+    $router->get('all/{id:\d+}', 'MobilesArbeitenController@allByKid');
     $router->get('{id:\d+}', 'MobilesArbeitenController@get');
     $router->post('{id:\d+}', 'MobilesArbeitenController@update');
 });
@@ -152,7 +155,7 @@ $router->group([
 $router->group([
     'prefix' => 'api/mobilesArbeitenAbleitung'
 ], function() use($router) {
-    $router->get('all/{id:\d}', 'MobilesArbeitenAbleitungController@all');
+    $router->get('all/{id:\d+}', 'MobilesArbeitenAbleitungController@all');
     $router->get('{id:\d+}', 'MobilesArbeitenAbleitungController@get');
     $router->post('{id:\d+}', 'MobilesArbeitenAbleitungController@update');
 });
